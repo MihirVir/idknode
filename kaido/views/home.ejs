@@ -1,0 +1,39 @@
+<main>
+    <section>
+        <h1 class = "main-heading">
+            This is kaido / <%= title %>
+        </h1>
+    </section>
+    <section id = "feed-posts">
+        <h4>
+            Posts
+        </h4>
+        <% if (locals.user) { %>
+        <form id = "new-post-form" action="/posts/create" method = "POST">
+            <textarea name="content"  cols="30" rows="3" required></textarea>
+            <input type="submit" value = "Post">
+        </form>
+        <% } %>
+        <div id = "posts-list-container">
+            <ul>
+                <% for (post of posts) { %>
+                    <%- include('_post')-%>
+                <% } %>
+            </ul>
+        </div>
+    </section>
+    <section id = "user-friends">
+        <h4>
+            Friends
+        </h4>
+        <% for (i of all_users ) { %>
+            <p>
+                <a href="/users/profile/<%= i.id %>">
+                    <%= i.name %>
+                </a>
+            </p>
+        <% } %>        
+    </section>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/js/home_posts.js"></script>
